@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="./home.component.css" />
+
+<div class="card_container">
+  <mat-spinner *ngIf="products.length === 0"></mat-spinner>
+  <mat-card *ngFor="let product of products">
+    
+    <mat-card-content>
+      <img
+        src="{{ product.imageUrl }}"
+        alt=""
+      />
+      <p>{{ product.description }}</p>
+    </mat-card-content>
+    
+    <mat-card-header>
+      <mat-card-title>{{ product.name }}</mat-card-title>
+      <mat-card-subtitle>
+        $/{{ product.price }} {{ product.quantity }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-actions>
+      <button mat-stroked-button color="accent" routerLink="/details/{{product.id}}">Buy Meal</button> 
+    </mat-card-actions>
+  </mat-card>
+</div>

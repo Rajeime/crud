@@ -1,0 +1,21 @@
+
+.card_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding: 13px;
+  background: #303030;
+
+}
+
+mat-card {
+  width: 20%;
+  margin-top: 12px;
+}
+
+mat-card-content img {
+  width: 100%;
+}
+
+
+
