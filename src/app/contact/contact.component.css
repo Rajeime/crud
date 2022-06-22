@@ -1,7 +1,7 @@
 .container{
     /* border: 1px solid red; */
     padding-top: 4%;
-    background-color: #303030;
+    /* background-color: #303030; */
 }
 *{
     color: white;
@@ -37,9 +37,9 @@ form textarea{
 /* map--------------------------------- */
 .map{
     /* border: 1px solid red; */
-    width: 100%;
+    width: 80%;
     text-align: center;
-    margin-bottom: 5%;
+    margin: 0 auto 5% auto;
 }
 
 /* footer--------------------------------- */
@@ -59,4 +59,7 @@ footer{
 footer a{
     text-decoration: none;
     padding: 3% 0%;
+}
+footer a:hover{
+    text-decoration: underline;
 }

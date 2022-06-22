@@ -1,6 +1,12 @@
 <link rel="stylesheet" href="./home.component.css" />
 
-<div class="card_container">
+<section>
+  <h1>What would you like to eat? <br><br> View our menu below</h1>
+    <br>
+  <a href="#card_container">&dArr;&dArr;</a>
+</section>
+
+<div class="card_container" id="card_container">
   <mat-spinner *ngIf="products.length === 0"></mat-spinner>
   <mat-card *ngFor="let product of products">
     
