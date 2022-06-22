@@ -15,9 +15,11 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DetailsComponent } from './details/details.component';
+import { ContactComponent } from './contact/contact.component';
+import { OrderCompletedComponent } from './order-completed/order-completed.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, DetailsComponent],
+  declarations: [AppComponent, HomeComponent, AboutComponent, DetailsComponent, ContactComponent, OrderCompletedComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

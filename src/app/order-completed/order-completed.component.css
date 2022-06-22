@@ -1,0 +1,10 @@
+
+.container {
+  padding: 13px;
+  background: #303030;
+}
+
+mat-card {
+  width: 31%;
+  margin: 10% auto 0 auto;
+}
