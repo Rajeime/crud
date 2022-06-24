@@ -2,26 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css'],
 })
-export class HomeComponent implements OnInit {
-  products: any = [];
-  footerItems: any[] = []; //------gallery------
+export class FooterComponent implements OnInit {
+  footerItems: any[] = [];
+  
+  constructor(private dataService: DataService) {}
 
-  constructor(private dataService: DataService) {} //dataService variable of type DataService
-
-  ngOnInit() {
-    this.dataService.sendGetRequest().subscribe((data: any[]) => {
-      this.products = data;
-    });
-
+  ngOnInit(): void {
     this.getFooterProducts();
-    console.log(this.footerItems); //--------gallery------
+    console.log(this.footerItems);
   }
 
-  public getFooterProducts() {    //--------gallery------
+  public getFooterProducts() {
     this.dataService.sendGetDetails(5).subscribe((data: any[]) => {
       this.footerItems.push(data);
     });

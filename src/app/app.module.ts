@@ -17,9 +17,18 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DetailsComponent } from './details/details.component';
 import { ContactComponent } from './contact/contact.component';
 import { OrderCompletedComponent } from './order-completed/order-completed.component';
+// import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, AboutComponent, DetailsComponent, ContactComponent, OrderCompletedComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    AboutComponent,
+    DetailsComponent,
+    ContactComponent,
+    OrderCompletedComponent,
+    // FooterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

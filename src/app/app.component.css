@@ -4,8 +4,9 @@
   box-sizing: border-box;
 }
 
-/* html {
-} */
+html {  /**¯\_(ツ)_/¯*/ 
+  scroll-snap-type: y mandatory;
+}
 
 body {
   scroll-behavior:smooth;
