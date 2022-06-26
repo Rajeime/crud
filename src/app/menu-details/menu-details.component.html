@@ -1,0 +1,29 @@
+<div class="card_container">
+    <!-- <mat-spinner *ngIf="products.length === 0"></mat-spinner> -->
+  <mat-card>
+    
+    <mat-card-content>
+      <img
+        src="{{ products.imageUrl }}"
+        alt=""
+      />
+    </mat-card-content>
+    
+    <mat-card-header>
+        <mat-card-title>{{ products.menu_name }}</mat-card-title>
+            <br>
+        <p>{{ products.menu_description }}</p>
+            <br>
+        <mat-card-subtitle> 
+            $/{{ products.cost }} {{ products.menu_size }}
+        </mat-card-subtitle>
+        <br>
+      <mat-card-actions>
+        <button mat-stroked-button color="accent" routerLink="/order-completed">Order Now</button> 
+      </mat-card-actions> 
+    </mat-card-header>
+
+  </mat-card>
+</div>
+
+

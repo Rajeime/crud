@@ -17,6 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { DetailsComponent } from './details/details.component';
 import { ContactComponent } from './contact/contact.component';
 import { OrderCompletedComponent } from './order-completed/order-completed.component';
+import { MenuComponent } from './menu/menu.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { MenuDetailsComponent } from './menu-details/menu-details.component';
+import { UpdateMenuComponent } from './update-menu/update-menu.component';
 // import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -27,6 +31,9 @@ import { OrderCompletedComponent } from './order-completed/order-completed.compo
     DetailsComponent,
     ContactComponent,
     OrderCompletedComponent,
+    MenuComponent,
+    MenuDetailsComponent,
+    UpdateMenuComponent,
     // FooterComponent,
   ],
   imports: [
@@ -39,6 +46,7 @@ import { OrderCompletedComponent } from './order-completed/order-completed.compo
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
