@@ -15,12 +15,12 @@ export class MenuDetailsComponent implements OnInit {
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute,  
   ) {}
 
   ngOnInit() {
 
-   var param = this.route.snapshot.paramMap.get('id') ;
+   var param = this.route.snapshot.paramMap.get('id');
    this.id = param
 
   this.dataService.getMenuDetailsId(this.id).subscribe((data:any)=>{
