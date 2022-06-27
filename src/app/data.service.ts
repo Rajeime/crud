@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MenuInterface } from './interfaces/menu';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ export class DataService {
     return this.httpClient.get<any[]>(this.REST_API_SERVER_MENU); 
   }         
   
-  public sendGetDetailsId(id: number) { 
+  public getMenuDetailsId(id:any) { 
     const url = `${this.REST_API_SERVER_MENU}/${id}`;
     return this.httpClient.get<any[]>(url); 
   }    

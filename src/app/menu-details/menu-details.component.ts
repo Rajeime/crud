@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { MenuInterface } from '../interfaces/menu';
 
 @Component({
   selector: 'app-menu-details',
@@ -9,25 +10,22 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class MenuDetailsComponent implements OnInit {
 
-  products: any = []; //cannot assign number
-  id: any = [];
-  detail: any;
+  menu!: MenuInterface; //cannot assign number
+  id!: any;
 
   constructor(
     private dataService: DataService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {
-    this.dataService.sendGetDetailsId(this.id).subscribe((data: any[]) => {
-      this.products = data[this.detail];
-    });
 
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      let details = params.get('id');
-      this.detail = details;
-      console.log(this.detail);
-    });
+   var param = this.route.snapshot.paramMap.get('id') ;
+   this.id = param
+
+  this.dataService.getMenuDetailsId(this.id).subscribe((data:any)=>{
+    this.menu = data
+  })
   }
 
 }
