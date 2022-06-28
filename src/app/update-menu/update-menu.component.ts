@@ -19,7 +19,7 @@ export class UpdateMenuComponent implements OnInit {
 
   items!: MenuInterface[];
 
-
+  productId:any
   //grab info from database
   ngOnInit(): void {
     this.dataservice.getMenuRequest().subscribe((result)=>{
@@ -30,21 +30,32 @@ export class UpdateMenuComponent implements OnInit {
 
 //post http request for info inside form
  public getUserFunction(value:any){
-    this.editMode = false
+ 
+if(this.editMode ){
+  this.updateForm()
+  this.editMode = false
+}
 
-    const info = {
-      id: 0,
-      menu_name : value.menu_name,
-      menu_description : value.menu_description,
-      menu_size : parseFloat(value.menu_size),
-      imageUrl : "https://source.unsplash.com/1600x900/?food",
-      cost: parseFloat(value.cost)
-    }
+else{
 
-    this.dataservice.postMenuDetails(info).subscribe((result)=>{
-      console.log(info)
-      this.router.navigateByUrl("/inventory");
-    })
+  const info = {
+    id: 0,
+    menu_name : value.menu_name,
+    menu_description : value.menu_description,
+    menu_size : parseFloat(value.menu_size),
+    imageUrl : "https://source.unsplash.com/1600x900/?food",
+    cost: parseFloat(value.cost)
+  }
+
+  this.dataservice.postMenuDetails(info).subscribe((result)=>{
+    console.log(info)
+    let currentUrl = this.router.url
+    this.router.navigateByUrl("/", {skipLocationChange:true}).then(()=>{
+      this.router.navigate([currentUrl]);
+    });
+  })
+}
+ 
   }
 
   delete(id:any) {
@@ -59,6 +70,7 @@ export class UpdateMenuComponent implements OnInit {
   }
 
   update(id:any){
+    this.productId = id
     let currentProduct = this.items.find((item)=>{
       return item.id === id
     })
@@ -66,10 +78,19 @@ export class UpdateMenuComponent implements OnInit {
       menu_name: currentProduct?.menu_name,
       menu_description: currentProduct?.menu_description,
       menu_size:currentProduct?.menu_size,
+      menu_img : "https://source.unsplash.com/1600x900/?food",
       cost:currentProduct?.cost
     })
     this.editMode = true
   }
 
+  updateForm(){
+    this.dataservice.updateMenuDetails(this.productId, this.form.value).subscribe((item)=>{
+      let currentUrl = this.router.url
+      this.router.navigateByUrl("/", {skipLocationChange:true}).then(()=>{
+        this.router.navigate([currentUrl]);
+      });
+    })
+  }
   
 }
