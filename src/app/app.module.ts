@@ -18,9 +18,13 @@ import { DetailsComponent } from './details/details.component';
 import { ContactComponent } from './contact/contact.component';
 import { OrderCompletedComponent } from './order-completed/order-completed.component';
 import { MenuComponent } from './menu/menu.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MenuDetailsComponent } from './menu-details/menu-details.component';
 import { UpdateMenuComponent } from './update-menu/update-menu.component';
+import { FormsModule } from '@angular/forms';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 // import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
@@ -46,7 +50,12 @@ import { UpdateMenuComponent } from './update-menu/update-menu.component';
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatGridListModule
+    MatGridListModule,
+    FormsModule,
+    MatInputModule,
+    MatTableModule,
+    MatSortModule,
+  
   ],
   providers: [],
   bootstrap: [AppComponent],

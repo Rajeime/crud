@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MenuInterface } from './interfaces/menu';
+import { Observable, observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,14 +22,31 @@ export class DataService {
   }               
   
 
-  //menu data request-------------------------------------
+  //menu data get request-------------------------------------
   public getMenuRequest() { 
     return this.httpClient.get<any[]>(this.REST_API_SERVER_MENU); 
   }         
   
-  public getMenuDetailsId(id:any) { 
+  public getMenuDetailsId(id:any):Observable<MenuInterface> { 
     const url = `${this.REST_API_SERVER_MENU}/${id}`;
-    return this.httpClient.get<any[]>(url); 
+    return this.httpClient.get<MenuInterface>(url); 
   }    
+
+  //menu data post request-------------------------------------
+  public postMenuDetails(data:any):Observable<MenuInterface>{
+    return this.httpClient.post<MenuInterface>(this.REST_API_SERVER_MENU , data )
+  }
+
+  //menu data delete request-------------------------------------
+  public deleteMenu(id:any):Observable<MenuInterface>{
+    const url = `${this.REST_API_SERVER_MENU}/${id}`;
+    return this.httpClient.delete<MenuInterface>(url)
+  }
+
+  //menu data put request-------------------------------------
+  public updateMenuDetails(id:any ,data:any):Observable<MenuInterface>{
+    const url = `${this.REST_API_SERVER_MENU}/${id}`;
+    return this.httpClient.put<MenuInterface>(url , data )
+  }
   
 }

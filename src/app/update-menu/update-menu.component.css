@@ -1,0 +1,15 @@
+.table{
+    width: 100%;
+}
+
+.mat-cell {
+ text-align: center;
+  }
+
+.button{
+    margin: 0px 2px;
+  }
+
+  .mat-header-cell{
+    text-align: center;
+  }
