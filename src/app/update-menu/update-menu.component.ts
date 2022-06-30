@@ -43,10 +43,11 @@ export class UpdateMenuComponent implements OnInit {
 
     this.dataservice.postMenuDetails(info).subscribe((result)=>{
       console.log(info)
-      this.router.navigateByUrl("/inventory");
+      this.router.navigateByUrl("/update");
     })
   }
 
+  //delete function 
   delete(id:any) {
     this.dataservice.deleteMenu(id).subscribe((result)=> {
       let currentUrl = this.router.url
@@ -58,6 +59,7 @@ export class UpdateMenuComponent implements OnInit {
     );
   }
 
+  //update function
   update(id:any){
     let currentProduct = this.items.find((item)=>{
       return item.id === id
