@@ -19,6 +19,8 @@ export class UpdateMenuComponent implements OnInit {
 
   items!: MenuInterface[];
 
+  id:any
+
 
   //grab info from database
   ngOnInit(): void {
@@ -30,22 +32,32 @@ export class UpdateMenuComponent implements OnInit {
 
 //post http request for info inside form
  public getUserFunction(value:any){
-    this.editMode = false
 
-    const info = {
-      id: 0,
-      menu_name : value.menu_name,
-      menu_description : value.menu_description,
-      menu_size : parseFloat(value.menu_size),
-      imageUrl : "https://source.unsplash.com/1600x900/?food",
-      cost: parseFloat(value.cost)
+    if(this.editMode){
+      this.updateMenu()
     }
 
-    this.dataservice.postMenuDetails(info).subscribe((result)=>{
-      console.log(info)
-      this.router.navigateByUrl("/update");
-    })
-  }
+    else{
+      this.editMode = false
+      const info = {
+        id: 0,
+        menu_name : value.menu_name,
+        menu_description : value.menu_description,
+        menu_size : parseFloat(value.menu_size),
+        imageUrl : "https://source.unsplash.com/1600x900/?food",
+        cost: parseFloat(value.cost)
+      }
+  
+      this.dataservice.postMenuDetails(info).subscribe((result)=>{
+        console.log(info)
+        let currentUrl = this.router.url
+        this.router.navigateByUrl("/", {skipLocationChange:true}).then(()=>{
+        this.router.navigate([currentUrl]);
+      });
+      })
+    }
+    }
+    
 
   //delete function 
   delete(id:any) {
@@ -59,19 +71,31 @@ export class UpdateMenuComponent implements OnInit {
     );
   }
 
-  //update function
+
+  // update click event
   update(id:any){
     let currentProduct = this.items.find((item)=>{
       return item.id === id
     })
+
     this.form.setValue({
       menu_name: currentProduct?.menu_name,
       menu_description: currentProduct?.menu_description,
       menu_size:currentProduct?.menu_size,
+      imageUrl : "https://source.unsplash.com/1600x900/?food",
       cost:currentProduct?.cost
     })
-    this.editMode = true
+    this.editMode = true;
+    this.id = id
   }
 
-  
+    //update function
+  updateMenu(){
+    this.dataservice.updateMenuDetails(this.id, this.form.value).subscribe((result)=>{
+      let currentUrl = this.router.url
+      this.router.navigateByUrl("/", {skipLocationChange:true}).then(()=>{
+        this.router.navigate([currentUrl]);
+      });
+    })
+  }
 }
