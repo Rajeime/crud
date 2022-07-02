@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild} from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild , ElementRef} from '@angular/core';
 import { DataService } from '../data.service';
 import { MenuInterface } from '../interfaces/menu';
 import { ActivatedRoute, Router} from '@angular/router';
@@ -9,13 +9,15 @@ import { NgForm } from '@angular/forms';
   templateUrl: './update-menu.component.html',
   styleUrls: ['./update-menu.component.css']
 })
-export class UpdateMenuComponent implements OnInit {
+export class UpdateMenuComponent implements OnInit, AfterViewInit{
   @ViewChild('menuForm') form!: NgForm;
+  @ViewChild('modal') modal!:ElementRef;
   editMode: boolean = false;
 
   displayedColumns: string[] = ['id', 'name', 'size','image','cost','action'];
  
   constructor(private dataservice:DataService ,private router:Router) { }
+
 
   items!: MenuInterface[];
 
@@ -31,8 +33,12 @@ export class UpdateMenuComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+    console.log(this.modal);
+  }
+
 //post http request for info inside form
- public getUserFunction(value:any){
+ getUserFunction(value:any){
 
     if(this.editMode){
       this.updateForm()
@@ -73,9 +79,14 @@ export class UpdateMenuComponent implements OnInit {
     );
   }
 
+  modalFunction(){
+    this.modal.nativeElement.style.display = 'block'
+  }
+
 
   // update click event
   update(id:any){
+    this.modalFunction()
     this.productId = id
     let currentProduct = this.items.find((item)=>{
       return item.id === id
@@ -102,5 +113,22 @@ export class UpdateMenuComponent implements OnInit {
       });
     })
   }
+
+  addFunction(){
+    this.editMode = false;
+    this.form.setValue({
+      menu_name:'',
+      menu_description: '',
+      menu_size:'',
+      imageUrl : '',
+      cost: ''
+    })
+    this.modalFunction()
+  }
+
+  closeModal(){
+    this.modal.nativeElement.style.display = 'none'
+  }
+  
 }
 
