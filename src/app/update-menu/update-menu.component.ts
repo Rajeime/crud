@@ -10,22 +10,28 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./update-menu.component.css']
 })
 export class UpdateMenuComponent implements OnInit, AfterViewInit{
+  //variable for storing information added to form
   @ViewChild('menuForm') form!: NgForm;
+
+  //variable for modal
   @ViewChild('modal') modal!:ElementRef;
+
+  //boolean that determines if modal is an add or edit form
   editMode: boolean = false;
 
-  displayedColumns: string[] = ['id', 'name', 'size','image','cost','action'];
+  //used to assigned headings to table
+  displayedColumns: string[] = ['id', 'name', 'size','image','cost','action','add'];
  
   constructor(private dataservice:DataService ,private router:Router) { }
 
-
+  //variable for storing menu items 
   items!: MenuInterface[];
 
   id:any
 
 
   productId:any
-  //grab info from database
+  //grab menu  info from database
   ngOnInit(): void {
     this.dataservice.getMenuRequest().subscribe((result)=>{
        this.items = result;
@@ -37,7 +43,7 @@ export class UpdateMenuComponent implements OnInit, AfterViewInit{
     console.log(this.modal);
   }
 
-//post http request for info inside form
+//post http request for data inside form
  getUserFunction(value:any){
 
     if(this.editMode){
@@ -46,6 +52,8 @@ export class UpdateMenuComponent implements OnInit, AfterViewInit{
 
     else{
       this.editMode = false
+
+      //object that stores information to be added to database
       const info = {
         id: 0,
         menu_name : value.menu_name,
@@ -55,6 +63,7 @@ export class UpdateMenuComponent implements OnInit, AfterViewInit{
         cost: parseFloat(value.cost)
       }
   
+      //posting information to database from forms
       this.dataservice.postMenuDetails(info).subscribe((result)=>{
         console.log(info)
         let currentUrl = this.router.url
@@ -67,7 +76,7 @@ export class UpdateMenuComponent implements OnInit, AfterViewInit{
 }
  
 
-  //delete function 
+  //delete menu function 
   delete(id:any) {
     this.dataservice.deleteMenu(id).subscribe((result)=> {
       let currentUrl = this.router.url
@@ -79,12 +88,13 @@ export class UpdateMenuComponent implements OnInit, AfterViewInit{
     );
   }
 
+  //functiion for modal
   modalFunction(){
     this.modal.nativeElement.style.display = 'block'
   }
 
 
-  // update click event
+  // update action on click event
   update(id:any){
     this.modalFunction()
     this.productId = id
@@ -92,6 +102,7 @@ export class UpdateMenuComponent implements OnInit, AfterViewInit{
       return item.id === id
     })
 
+    //setting the values inside form to edit and update menu information 
     this.form.setValue({
       menu_name: currentProduct?.menu_name,
       menu_description: currentProduct?.menu_description,
@@ -114,6 +125,7 @@ export class UpdateMenuComponent implements OnInit, AfterViewInit{
     })
   }
 
+  //function that displays modal that contains form for adding new data to the database 
   addFunction(){
     this.editMode = false;
     this.form.setValue({

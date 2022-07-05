@@ -8,7 +8,7 @@ import { Observable, observable } from 'rxjs';
 })
 export class DataService {
   private REST_API_SERVER = 'http://localhost:3000/products'; //JSON Server
-  private REST_API_SERVER_MENU = 'http://localhost:3000/menu'; //JSON Server
+  private REST_API_SERVER_MENU = 'http://localhost:3000/menu'; //JSON Server for menu
   constructor(private httpClient: HttpClient) {}
   
   public sendGetRequest() {

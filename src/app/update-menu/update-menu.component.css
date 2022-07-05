@@ -93,4 +93,12 @@ input, select, textarea{
   font-size: 28px;
   cursor: pointer;
 }
-	
+
+.addInfo{
+  background-color: #8500a6;
+  color: white;
+}
+
+.addInfo:hover{
+  background-color: #bd29a9;
+}
